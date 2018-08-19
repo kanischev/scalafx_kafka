@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.sbt.kafka.fx.dialogs.SettingsPresenter">
+   <children>
+      <VBox prefHeight="490.0" prefWidth="600.0" spacing="10.0">
+         <children>
+            <Label text="Настройки приложения">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font></Label>
+            <HBox prefHeight="27.0" prefWidth="580.0" spacing="10.0">
+               <children>
+                  <Label text="Максимальное количество сообщений для хранения">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="maxRecordsCountInput" alignment="CENTER_RIGHT" layoutX="363.0" layoutY="10.0" prefHeight="25.0" prefWidth="227.0" promptText="Введите число">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
+                  <Label text="Подключние к ZK">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <TextField fx:id="zkConnectionStringInput" prefHeight="25.0" prefWidth="457.0" promptText="хост:порт">
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TextField>
+               </children>
+            </HBox>
+            <Label text="Параметры подключение к Kafka:">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TableView id="kafkaParamsTable" fx:id="kafkaParamsTable" editable="true" prefHeight="458.0" prefWidth="471.0">
+               <columns>
+                  <TableColumn id="kafkaConnectionKeyColumn" fx:id="kafkaConnectionKeyColumn" prefWidth="297.0" text="Параметр" />
+                  <TableColumn id="kafkaConnectionValueColumn" fx:id="kafkaConnectionValueColumn" minWidth="0.0" prefWidth="282.0" text="Значение" />
+               </columns>
+            </TableView>
+            <HBox prefHeight="41.0" prefWidth="471.0" spacing="10.0">
+               <children>
+                  <TextField id="settingsKafkaParamNameInput" fx:id="settingsKafkaParamKeyInput" prefHeight="25.0" prefWidth="245.0" promptText="Параметр" />
+                  <TextField id="settingsKafkaParamValueInput" fx:id="settingsKafkaParamValueInput" prefHeight="25.0" prefWidth="245.0" promptText="Значение" />
+                  <Button id="settings_AddParamButton" mnemonicParsing="false" onMouseClicked="#onAddKafkaConfigParam" prefHeight="25.0" prefWidth="70.0" text="Добавить" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="15.0" layoutY="645.0" prefHeight="19.0" prefWidth="580.0" spacing="10.0">
+               <children>
+                  <Button fx:id="settingsSaveButton" mnemonicParsing="false" onMouseClicked="#onSave" text="Сохранить" />
+                  <Button fx:id="settingsCancelButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onMouseClicked="#onCancel" text="Отменить" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+</GridPane>
