@@ -1,14 +1,17 @@
 package ru.sbt.kafka.fx
 
 import com.google.inject.{AbstractModule, Injector, Scopes}
+import javafx.event.EventHandler
+import javafx.stage.WindowEvent
 import jfxtras.styles.jmetro8.JMetro
 import ru.sbt.guice.{InjectionConfigurator, InjectorHolder}
+import ru.sbt.kafka.fx.utils.KafkaReceiversModel
 import ru.sbt.kafka.services.{ConfigFileConfigurationService, ConfigurationService}
-import scalafx.application.JFXApp
+import scalafx.Includes._
+import scalafx.application.{JFXApp, Platform}
 import scalafx.scene.Scene
 import scalafxml.core.FXMLView
 import scalafxml.guice.GuiceDependencyResolver
-import scalafx.Includes._
 
 object KafkaReceiverApp
   extends JFXApp
@@ -41,4 +44,14 @@ object KafkaReceiverApp
     title = "Подписчик на данные из Kafka"
     scene = Scene
   }
+  stage.setOnCloseRequest(new EventHandler[WindowEvent] {
+    override def handle(event: WindowEvent): Unit = {
+      KafkaReceiversModel.elements.foreach(rwt => {
+        rwt.receiver.stopPolling()
+      })
+      //TODO: wait for KafkaReceiversModel.elements.forall(!_.receiver.isRunning.get())
+      Platform.exit()
+      System.exit(0)
+    }
+  })
 }

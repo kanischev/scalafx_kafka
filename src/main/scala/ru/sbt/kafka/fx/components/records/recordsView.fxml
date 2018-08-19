@@ -6,11 +6,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.sbt.kafka.fx.components.records.RecordsViewPresenter">
    <children>
-      <TitledPane animated="false" prefHeight="400.0" prefWidth="600.0" text="untitled">
+      <TitledPane fx:id="recordsContainerPane" animated="false" prefHeight="400.0" prefWidth="600.0" text="untitled">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0">
                <children>
-                  <TableView layoutX="-1.0" />
+                  <TableView fx:id="recordsTable" layoutX="-1.0" />
                </children>
             </AnchorPane>
         </content>
